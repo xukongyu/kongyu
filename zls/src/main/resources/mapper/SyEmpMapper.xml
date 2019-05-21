@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.SyEmpMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.SyEmp">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="empname" jdbcType="VARCHAR" property="empname" />
+    <result column="empno" jdbcType="VARCHAR" property="empno" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="deptid" jdbcType="INTEGER" property="deptid" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="disabled" jdbcType="BIT" property="disabled" />
+  </resultMap>
+  <select id="getYanZhen" resultMap="BaseResultMap" parameterType="syEmp">
+    select id,empname,empno,pwd,deptid,remark,disabled from sy_emp where empno = #{empno} and pwd = #{pwd} and disabled = 0
+  </select>
+  <select id="getAll" resultType="syEmpAndDept">
+     select e.id,empname,empno,pwd,deptid,e.remark,e.disabled,d.deptname from sy_emp e inner join sy_dept d on e.deptid = d.id where e.disabled = 0
+  </select>
+  <update id="delEmp" parameterType="int">
+    update  sy_emp set disabled = 1 where id = #{id}
+  </update>
+  <insert id="addEmp" parameterType="syEmp">
+    insert into sy_emp values(null,#{empname},#{empno},#{pwd},#{deptid},#{remark},0);
+  </insert>
+  <select id="getOne" parameterType="int" resultType="syEmp">
+    select * from sy_emp where id = #{id}
+  </select>
+  <update id="updEmp" parameterType="syEmp">
+    update  sy_emp set empname=#{empname},empno=#{empno},pwd=#{pwd},deptid=#{deptid},remark=#{remark} where id =#{id}
+  </update>
+</mapper>

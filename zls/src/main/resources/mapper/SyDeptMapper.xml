@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.SyDeptMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.SyDept">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="deptname" jdbcType="VARCHAR" property="deptname" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="disabled" jdbcType="BIT" property="disabled" />
+  </resultMap>
+  <select id="getAll"  resultMap="BaseResultMap">
+      select * from sy_dept where disabled=0
+  </select>
+  <update id="delDept" parameterType="int" >
+      update  sy_dept set disabled =1 where id = #{id}
+  </update>
+  <insert id="addDept" parameterType="syDept">
+    insert into sy_dept values(null,#{deptname},#{remark},0)
+  </insert>
+  <select id="getOne" parameterType="int" resultMap="BaseResultMap">
+      select * from sy_dept where id = #{id}
+  </select>
+  <update id="updDept" parameterType="syDept">
+    update  sy_dept set deptname=#{deptname},remark=#{remark} where id=#{id}
+  </update>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.SyMetertypeMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.SyMetertype">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="metertypename" jdbcType="VARCHAR" property="metertypename" />
+    <result column="aperture" jdbcType="INTEGER" property="aperture" />
+    <result column="mavvalue" jdbcType="INTEGER" property="mavvalue" />
+    <result column="minvalue" jdbcType="INTEGER" property="minvalue" />
+    <result column="life" jdbcType="INTEGER" property="life" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="disabled" jdbcType="BIT" property="disabled" />
+  </resultMap>
+  <select id="getAll"  resultMap="BaseResultMap">
+    select * from sy_metertype where disabled = 0
+  </select>
+  <update id="updMeter" parameterType="int">
+      update  sy_metertype set disabled = 1 where id = #{id}
+  </update>
+  <insert id="addMeterType" parameterType="syMeterType">
+    insert into sy_metertype values(null,#{metertypename},#{aperture},#{mavvalue},#{minvalue},#{life},#{remark},0)
+  </insert>
+  <select id="getOne" parameterType="int" resultMap="BaseResultMap">
+      select  * from sy_metertype where id= #{id}
+  </select>
+  <update id="updMeterType" parameterType="syMeterType">
+    update  sy_metertype set metertypename=#{metertypename},aperture=#{aperture},mavvalue=#{mavvalue},minvalue=#{minvalue},life=#{life},remark=#{remark},disabled=0
+    where id = #{id}
+  </update>
+</mapper>

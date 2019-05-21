@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.PyPayMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.PyPay">
+    <id column="PayNo" jdbcType="VARCHAR" property="payno" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="PayType" jdbcType="VARCHAR" property="paytype" />
+    <result column="PayDate" jdbcType="DATE" property="paydate" />
+    <result column="Invoice" jdbcType="VARCHAR" property="invoice" />
+    <result column="PayMoney" jdbcType="DOUBLE" property="paymoney" />
+    <result column="UseMoney" jdbcType="DOUBLE" property="usemoney" />
+    <result column="EmpID" jdbcType="INTEGER" property="empid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PayNo, UserNo, PayType, PayDate, Invoice, PayMoney, UseMoney, EmpID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from py_pay
+    where PayNo = #{payno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from py_pay
+    where PayNo = #{payno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.PyPay">
+    insert into py_pay (PayNo, UserNo, PayType, 
+      PayDate, Invoice, PayMoney, 
+      UseMoney, EmpID)
+    values (#{payno,jdbcType=VARCHAR}, #{userno,jdbcType=VARCHAR}, #{paytype,jdbcType=VARCHAR}, 
+      #{paydate,jdbcType=DATE}, #{invoice,jdbcType=VARCHAR}, #{paymoney,jdbcType=DOUBLE}, 
+      #{usemoney,jdbcType=DOUBLE}, #{empid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.PyPay">
+    insert into py_pay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payno != null">
+        PayNo,
+      </if>
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="paytype != null">
+        PayType,
+      </if>
+      <if test="paydate != null">
+        PayDate,
+      </if>
+      <if test="invoice != null">
+        Invoice,
+      </if>
+      <if test="paymoney != null">
+        PayMoney,
+      </if>
+      <if test="usemoney != null">
+        UseMoney,
+      </if>
+      <if test="empid != null">
+        EmpID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payno != null">
+        #{payno,jdbcType=VARCHAR},
+      </if>
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null">
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="paydate != null">
+        #{paydate,jdbcType=DATE},
+      </if>
+      <if test="invoice != null">
+        #{invoice,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null">
+        #{paymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="usemoney != null">
+        #{usemoney,jdbcType=DOUBLE},
+      </if>
+      <if test="empid != null">
+        #{empid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.PyPay">
+    update py_pay
+    <set>
+      <if test="userno != null">
+        UserNo = #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null">
+        PayType = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="paydate != null">
+        PayDate = #{paydate,jdbcType=DATE},
+      </if>
+      <if test="invoice != null">
+        Invoice = #{invoice,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null">
+        PayMoney = #{paymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="usemoney != null">
+        UseMoney = #{usemoney,jdbcType=DOUBLE},
+      </if>
+      <if test="empid != null">
+        EmpID = #{empid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PayNo = #{payno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.PyPay">
+    update py_pay
+    set UserNo = #{userno,jdbcType=VARCHAR},
+      PayType = #{paytype,jdbcType=VARCHAR},
+      PayDate = #{paydate,jdbcType=DATE},
+      Invoice = #{invoice,jdbcType=VARCHAR},
+      PayMoney = #{paymoney,jdbcType=DOUBLE},
+      UseMoney = #{usemoney,jdbcType=DOUBLE},
+      EmpID = #{empid,jdbcType=INTEGER}
+    where PayNo = #{payno,jdbcType=VARCHAR}
+  </update>
+  <select id="selall" resultType="com.huarui.zls.pojo.pypayss">
+    select p.*,us.UserName from (select v.*,i.InvoiceType from (select p.*,u.id,u.empname from py_pay p,sy_emp u where p.EmpID=u.id) v,iv_invoice i where i.InvoiceNo=v.Invoice) p,us_user us WHERE p.UserNo=us.UserNo</select>
+  <select id="selpapayByid" resultType="com.huarui.zls.pojo.pypayss" parameterType="java.lang.String">
+   select p.*,us.UserName from (select v.*,i.InvoiceType from (select p.*,u.id,u.empname from py_pay p,sy_emp u where p.EmpID=u.id) v,iv_invoice i where i.InvoiceNo=v.Invoice and v.PayNo=#{id}) p,us_user us WHERE p.UserNo=us.UserNo
+</select>
+</mapper>

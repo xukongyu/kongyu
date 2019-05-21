@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.PyBalancedetailMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.PyBalancedetail">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ParentID" jdbcType="INTEGER" property="parentid" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="BalanceDate" jdbcType="DATE" property="balancedate" />
+    <result column="BalanceMoney" jdbcType="DOUBLE" property="balancemoney" />
+    <result column="BillNo" jdbcType="VARCHAR" property="billno" />
+    <result column="BillDetailID" jdbcType="INTEGER" property="billdetailid" />
+    <result column="CostTypeCode" jdbcType="VARCHAR" property="costtypecode" />
+    <result column="DetailRealMoney1" jdbcType="DOUBLE" property="detailrealmoney1" />
+    <result column="DetailRealMoney2" jdbcType="DOUBLE" property="detailrealmoney2" />
+    <result column="PayNo" jdbcType="VARCHAR" property="payno" />
+    <result column="PayUseMoney1" jdbcType="DOUBLE" property="payusemoney1" />
+    <result column="PayUseMoney2" jdbcType="DOUBLE" property="payusemoney2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ParentID, UserNo, BalanceDate, BalanceMoney, BillNo, BillDetailID, CostTypeCode, 
+    DetailRealMoney1, DetailRealMoney2, PayNo, PayUseMoney1, PayUseMoney2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from py_balancedetail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from py_balancedetail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.PyBalancedetail">
+    insert into py_balancedetail (ID, ParentID, UserNo, 
+      BalanceDate, BalanceMoney, BillNo, 
+      BillDetailID, CostTypeCode, DetailRealMoney1, 
+      DetailRealMoney2, PayNo, PayUseMoney1, 
+      PayUseMoney2)
+    values (#{id,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{userno,jdbcType=VARCHAR}, 
+      #{balancedate,jdbcType=DATE}, #{balancemoney,jdbcType=DOUBLE}, #{billno,jdbcType=VARCHAR}, 
+      #{billdetailid,jdbcType=INTEGER}, #{costtypecode,jdbcType=VARCHAR}, #{detailrealmoney1,jdbcType=DOUBLE}, 
+      #{detailrealmoney2,jdbcType=DOUBLE}, #{payno,jdbcType=VARCHAR}, #{payusemoney1,jdbcType=DOUBLE}, 
+      #{payusemoney2,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.PyBalancedetail">
+    insert into py_balancedetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="parentid != null">
+        ParentID,
+      </if>
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="balancedate != null">
+        BalanceDate,
+      </if>
+      <if test="balancemoney != null">
+        BalanceMoney,
+      </if>
+      <if test="billno != null">
+        BillNo,
+      </if>
+      <if test="billdetailid != null">
+        BillDetailID,
+      </if>
+      <if test="costtypecode != null">
+        CostTypeCode,
+      </if>
+      <if test="detailrealmoney1 != null">
+        DetailRealMoney1,
+      </if>
+      <if test="detailrealmoney2 != null">
+        DetailRealMoney2,
+      </if>
+      <if test="payno != null">
+        PayNo,
+      </if>
+      <if test="payusemoney1 != null">
+        PayUseMoney1,
+      </if>
+      <if test="payusemoney2 != null">
+        PayUseMoney2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="balancedate != null">
+        #{balancedate,jdbcType=DATE},
+      </if>
+      <if test="balancemoney != null">
+        #{balancemoney,jdbcType=DOUBLE},
+      </if>
+      <if test="billno != null">
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="billdetailid != null">
+        #{billdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="costtypecode != null">
+        #{costtypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="detailrealmoney1 != null">
+        #{detailrealmoney1,jdbcType=DOUBLE},
+      </if>
+      <if test="detailrealmoney2 != null">
+        #{detailrealmoney2,jdbcType=DOUBLE},
+      </if>
+      <if test="payno != null">
+        #{payno,jdbcType=VARCHAR},
+      </if>
+      <if test="payusemoney1 != null">
+        #{payusemoney1,jdbcType=DOUBLE},
+      </if>
+      <if test="payusemoney2 != null">
+        #{payusemoney2,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.PyBalancedetail">
+    update py_balancedetail
+    <set>
+      <if test="parentid != null">
+        ParentID = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        UserNo = #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="balancedate != null">
+        BalanceDate = #{balancedate,jdbcType=DATE},
+      </if>
+      <if test="balancemoney != null">
+        BalanceMoney = #{balancemoney,jdbcType=DOUBLE},
+      </if>
+      <if test="billno != null">
+        BillNo = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="billdetailid != null">
+        BillDetailID = #{billdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="costtypecode != null">
+        CostTypeCode = #{costtypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="detailrealmoney1 != null">
+        DetailRealMoney1 = #{detailrealmoney1,jdbcType=DOUBLE},
+      </if>
+      <if test="detailrealmoney2 != null">
+        DetailRealMoney2 = #{detailrealmoney2,jdbcType=DOUBLE},
+      </if>
+      <if test="payno != null">
+        PayNo = #{payno,jdbcType=VARCHAR},
+      </if>
+      <if test="payusemoney1 != null">
+        PayUseMoney1 = #{payusemoney1,jdbcType=DOUBLE},
+      </if>
+      <if test="payusemoney2 != null">
+        PayUseMoney2 = #{payusemoney2,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.PyBalancedetail">
+    update py_balancedetail
+    set ParentID = #{parentid,jdbcType=INTEGER},
+      UserNo = #{userno,jdbcType=VARCHAR},
+      BalanceDate = #{balancedate,jdbcType=DATE},
+      BalanceMoney = #{balancemoney,jdbcType=DOUBLE},
+      BillNo = #{billno,jdbcType=VARCHAR},
+      BillDetailID = #{billdetailid,jdbcType=INTEGER},
+      CostTypeCode = #{costtypecode,jdbcType=VARCHAR},
+      DetailRealMoney1 = #{detailrealmoney1,jdbcType=DOUBLE},
+      DetailRealMoney2 = #{detailrealmoney2,jdbcType=DOUBLE},
+      PayNo = #{payno,jdbcType=VARCHAR},
+      PayUseMoney1 = #{payusemoney1,jdbcType=DOUBLE},
+      PayUseMoney2 = #{payusemoney2,jdbcType=DOUBLE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

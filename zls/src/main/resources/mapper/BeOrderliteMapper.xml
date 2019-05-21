@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.BeOrderliteMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.BeOrderlite">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="OrderType" jdbcType="INTEGER" property="ordertype" />
+    <result column="Datee" jdbcType="DATE" property="datee" />
+    <result column="EmpID" jdbcType="INTEGER" property="empid" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="Description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, OrderType, Datee, EmpID, UserNo, UserName, Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from be_orderlite
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from be_orderlite
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.BeOrderlite">
+    insert into be_orderlite (ID, OrderType, Datee, 
+      EmpID, UserNo, UserName, 
+      Description)
+    values (#{id,jdbcType=INTEGER}, #{ordertype,jdbcType=INTEGER}, #{datee,jdbcType=DATE}, 
+      #{empid,jdbcType=INTEGER}, #{userno,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.BeOrderlite">
+    insert into be_orderlite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="ordertype != null">
+        OrderType,
+      </if>
+      <if test="datee != null">
+        Datee,
+      </if>
+      <if test="empid != null">
+        EmpID,
+      </if>
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ordertype != null">
+        #{ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="datee != null">
+        #{datee,jdbcType=DATE},
+      </if>
+      <if test="empid != null">
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.BeOrderlite">
+    update be_orderlite
+    <set>
+      <if test="ordertype != null">
+        OrderType = #{ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="datee != null">
+        Datee = #{datee,jdbcType=DATE},
+      </if>
+      <if test="empid != null">
+        EmpID = #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        UserNo = #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.BeOrderlite">
+    update be_orderlite
+    set OrderType = #{ordertype,jdbcType=INTEGER},
+      Datee = #{datee,jdbcType=DATE},
+      EmpID = #{empid,jdbcType=INTEGER},
+      UserNo = #{userno,jdbcType=VARCHAR},
+      UserName = #{username,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

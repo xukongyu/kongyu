@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.SyMenuMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.SyMenu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="MenuName" jdbcType="VARCHAR" property="menuname" />
+    <result column="Parent" jdbcType="INTEGER" property="parent" />
+    <result column="Url" jdbcType="VARCHAR" property="url" />
+    <result column="OnClikc" jdbcType="VARCHAR" property="onclikc" />
+    <result column="Icon" jdbcType="VARCHAR" property="icon" />
+    <result column="OrderIndex" jdbcType="INTEGER" property="orderindex" />
+    <result column="FlowId" jdbcType="INTEGER" property="flowid" />
+    <result column="Disabled" jdbcType="BIT" property="disabled" />
+  </resultMap>
+  <select id="getAll" resultMap="BaseResultMap">
+    select  * from sy_menu where disabled = 0
+  </select>
+  <select id="getEmpidInner" parameterType="int" resultMap="BaseResultMap">
+
+    select m.* from sy_menu m INNER JOIN sy_empmenupower e on m.id = e.menuid where e.empid=#{id} GROUP BY m.Parent
+  </select>
+  <select id="getEmpidInners" parameterType="int" resultMap="BaseResultMap">
+
+    select m.* from sy_menu m INNER JOIN sy_empmenupower e on m.id = e.menuid where e.empid=#{id}
+  </select>
+</mapper>

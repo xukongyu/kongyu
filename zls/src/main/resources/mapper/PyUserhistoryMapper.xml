@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.PyUserhistoryMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.PyUserhistory">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="Typee" jdbcType="INTEGER" property="typee" />
+    <result column="OrderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="Datee" jdbcType="DATE" property="datee" />
+    <result column="PreValue" jdbcType="INTEGER" property="prevalue" />
+    <result column="CurValue" jdbcType="INTEGER" property="curvalue" />
+    <result column="Amount" jdbcType="INTEGER" property="amount" />
+    <result column="BillMoney" jdbcType="DOUBLE" property="billmoney" />
+    <result column="PayMoney" jdbcType="DOUBLE" property="paymoney" />
+    <result column="UserMoney" jdbcType="DOUBLE" property="usermoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, UserNo, Typee, OrderNo, Datee, PreValue, CurValue, Amount, BillMoney, PayMoney, 
+    UserMoney
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from py_userhistory
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from py_userhistory
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.PyUserhistory">
+    insert into py_userhistory (ID, UserNo, Typee, 
+      OrderNo, Datee, PreValue, 
+      CurValue, Amount, BillMoney, 
+      PayMoney, UserMoney)
+    values (#{id,jdbcType=INTEGER}, #{userno,jdbcType=VARCHAR}, #{typee,jdbcType=INTEGER}, 
+      #{orderno,jdbcType=VARCHAR}, #{datee,jdbcType=DATE}, #{prevalue,jdbcType=INTEGER}, 
+      #{curvalue,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, #{billmoney,jdbcType=DOUBLE}, 
+      #{paymoney,jdbcType=DOUBLE}, #{usermoney,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.PyUserhistory">
+    insert into py_userhistory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="typee != null">
+        Typee,
+      </if>
+      <if test="orderno != null">
+        OrderNo,
+      </if>
+      <if test="datee != null">
+        Datee,
+      </if>
+      <if test="prevalue != null">
+        PreValue,
+      </if>
+      <if test="curvalue != null">
+        CurValue,
+      </if>
+      <if test="amount != null">
+        Amount,
+      </if>
+      <if test="billmoney != null">
+        BillMoney,
+      </if>
+      <if test="paymoney != null">
+        PayMoney,
+      </if>
+      <if test="usermoney != null">
+        UserMoney,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="typee != null">
+        #{typee,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null">
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="datee != null">
+        #{datee,jdbcType=DATE},
+      </if>
+      <if test="prevalue != null">
+        #{prevalue,jdbcType=INTEGER},
+      </if>
+      <if test="curvalue != null">
+        #{curvalue,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="billmoney != null">
+        #{billmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="paymoney != null">
+        #{paymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="usermoney != null">
+        #{usermoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.PyUserhistory">
+    update py_userhistory
+    <set>
+      <if test="userno != null">
+        UserNo = #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="typee != null">
+        Typee = #{typee,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null">
+        OrderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="datee != null">
+        Datee = #{datee,jdbcType=DATE},
+      </if>
+      <if test="prevalue != null">
+        PreValue = #{prevalue,jdbcType=INTEGER},
+      </if>
+      <if test="curvalue != null">
+        CurValue = #{curvalue,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        Amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="billmoney != null">
+        BillMoney = #{billmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="paymoney != null">
+        PayMoney = #{paymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="usermoney != null">
+        UserMoney = #{usermoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.PyUserhistory">
+    update py_userhistory
+    set UserNo = #{userno,jdbcType=VARCHAR},
+      Typee = #{typee,jdbcType=INTEGER},
+      OrderNo = #{orderno,jdbcType=VARCHAR},
+      Datee = #{datee,jdbcType=DATE},
+      PreValue = #{prevalue,jdbcType=INTEGER},
+      CurValue = #{curvalue,jdbcType=INTEGER},
+      Amount = #{amount,jdbcType=INTEGER},
+      BillMoney = #{billmoney,jdbcType=DOUBLE},
+      PayMoney = #{paymoney,jdbcType=DOUBLE},
+      UserMoney = #{usermoney,jdbcType=DOUBLE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

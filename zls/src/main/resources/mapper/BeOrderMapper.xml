@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.BeOrderMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.BeOrder">
+    <id column="OrderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="OrderType" jdbcType="INTEGER" property="ordertype" />
+    <result column="StepId" jdbcType="INTEGER" property="stepid" />
+    <result column="CreateEmp" jdbcType="INTEGER" property="createemp" />
+    <result column="CreateDate" jdbcType="DATE" property="createdate" />
+    <result column="CompleteEmp" jdbcType="INTEGER" property="completeemp" />
+    <result column="CompleteDate" jdbcType="DATE" property="completedate" />
+    <result column="LastEditEmp" jdbcType="INTEGER" property="lasteditemp" />
+    <result column="LastEditDate" jdbcType="DATE" property="lasteditdate" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="UserType" jdbcType="VARCHAR" property="usertype" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="LinkMan" jdbcType="VARCHAR" property="linkman" />
+    <result column="Phone" jdbcType="VARCHAR" property="phone" />
+    <result column="UseTarget" jdbcType="VARCHAR" property="usetarget" />
+    <result column="HouseHeight" jdbcType="INTEGER" property="househeight" />
+    <result column="MaxAmount" jdbcType="INTEGER" property="maxamount" />
+    <result column="MeterTypeID" jdbcType="INTEGER" property="metertypeid" />
+    <result column="MeterCount" jdbcType="INTEGER" property="metercount" />
+    <result column="UserRemark" jdbcType="VARCHAR" property="userremark" />
+    <result column="PayType" jdbcType="VARCHAR" property="paytype" />
+    <result column="BankCompany" jdbcType="VARCHAR" property="bankcompany" />
+    <result column="BankNum" jdbcType="VARCHAR" property="banknum" />
+    <result column="OldUserNo" jdbcType="VARCHAR" property="olduserno" />
+    <result column="OldUserName" jdbcType="VARCHAR" property="oldusername" />
+    <result column="OldUserPhone" jdbcType="VARCHAR" property="olduserphone" />
+    <result column="OldUserAddr" jdbcType="VARCHAR" property="olduseraddr" />
+    <result column="OldMeter" jdbcType="VARCHAR" property="oldmeter" />
+    <result column="AuditEmpID" jdbcType="INTEGER" property="auditempid" />
+    <result column="AuditMessage" jdbcType="VARCHAR" property="auditmessage" />
+    <result column="ProjectMoney" jdbcType="DECIMAL" property="projectmoney" />
+    <result column="RealMoney" jdbcType="DECIMAL" property="realmoney" />
+    <result column="PayDate" jdbcType="DATE" property="paydate" />
+    <result column="ProjectDate1" jdbcType="DATE" property="projectdate1" />
+    <result column="ProjectDate2" jdbcType="DATE" property="projectdate2" />
+    <result column="AreaID" jdbcType="INTEGER" property="areaid" />
+    <result column="AbortCause" jdbcType="VARCHAR" property="abortcause" />
+  </resultMap>
+  <select id="getOrderNoDesc" resultMap="BaseResultMap">
+    select *from be_order order by  OrderNo desc limit 1
+  </select>
+  <insert id="addOrder" parameterType="beOrder">
+      insert into be_order values(#{orderno},#{ordertype},#{stepid},#{createemp},#{createdate},null,null,
+      null,null,#{username},#{usertype},#{address},#{linkman},#{phone},#{usetarget},#{househeight},#{maxamount},
+      #{metertypeid},#{metercount},#{userremark},null,null,null,null,null,null,null,null,null,null,null,
+      null,null,null,null,null,null);
+  </insert>
+  <!-- 根据进度查询所有  -->
+  <select id="selStepId" resultMap="BaseResultMap" parameterType="int">
+    select * from be_order where stepid=#{id}
+  </select>
+  <!-- 审核不通过 -->
+  <update id="shenNo" parameterType="beOrder">
+    update  be_order set stepid=-1,lasteditdate=#{lasteditdate},lasteditemp=#{lasteditemp},auditempid=#{auditempid},
+    auditmessage=#{auditmessage},abortcause=#{abortcause} where orderno = #{orderno}
+  </update>
+  <!--审核通过 -->
+  <update id="shenYes" parameterType="beOrder">
+    update be_order set stepid=2,lasteditdate=#{lasteditdate},lasteditemp=#{lasteditemp},auditempid=#{auditempid},
+    auditmessage=#{auditmessage}  where orderno = #{orderno}
+  </update>
+  <!-- 缴费不通过 -->
+  <update id="jiaofeiNo" parameterType="beOrder">
+    update be_order set stepid=1,lasteditdate=#{lasteditdate},lasteditemp=#{lasteditemp} where orderno=#{orderno}
+  </update>
+  <!-- 缴费通过 -->
+  <update id="jiaoFeiYes" parameterType="beOrder">
+      update be_order set stepid = 3 ,lasteditdate=#{lasteditdate},lasteditemp=#{lasteditemp},projectmoney=#{projectmoney},
+      realmoney=#{realmoney},paydate=#{paydate} where  orderno = #{orderno}
+  </update>
+</mapper>

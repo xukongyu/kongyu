@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.UsMeterMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.UsMeter">
+    <id column="MeterNo" jdbcType="VARCHAR" property="meterno" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="MeterName" jdbcType="VARCHAR" property="metername" />
+    <result column="MeterTypeID" jdbcType="INTEGER" property="metertypeid" />
+    <result column="mavalue" jdbcType="INTEGER" property="mavalue" />
+    <result column="StartValue" jdbcType="INTEGER" property="startvalue" />
+    <result column="SetupDate" jdbcType="DATE" property="setupdate" />
+    <result column="Factory" jdbcType="VARCHAR" property="factory" />
+    <result column="Disabled" jdbcType="BIT" property="disabled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MeterNo, UserNo, MeterName, MeterTypeID, mavalue, StartValue, SetupDate, Factory, 
+    Disabled
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from us_meter
+    where MeterNo = #{meterno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from us_meter
+    where MeterNo = #{meterno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.UsMeter">
+    insert into us_meter (MeterNo, UserNo, MeterName, 
+      MeterTypeID, mavalue, StartValue, 
+      SetupDate, Factory, Disabled
+      )
+    values (#{meterno,jdbcType=VARCHAR}, #{userno,jdbcType=VARCHAR}, #{metername,jdbcType=VARCHAR}, 
+      #{metertypeid,jdbcType=INTEGER}, #{mavalue,jdbcType=INTEGER}, #{startvalue,jdbcType=INTEGER}, 
+      #{setupdate,jdbcType=DATE}, #{factory,jdbcType=VARCHAR}, #{disabled,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.UsMeter">
+    insert into us_meter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="meterno != null">
+        MeterNo,
+      </if>
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="metername != null">
+        MeterName,
+      </if>
+      <if test="metertypeid != null">
+        MeterTypeID,
+      </if>
+      <if test="mavalue != null">
+        mavalue,
+      </if>
+      <if test="startvalue != null">
+        StartValue,
+      </if>
+      <if test="setupdate != null">
+        SetupDate,
+      </if>
+      <if test="factory != null">
+        Factory,
+      </if>
+      <if test="disabled != null">
+        Disabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="meterno != null">
+        #{meterno,jdbcType=VARCHAR},
+      </if>
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="metername != null">
+        #{metername,jdbcType=VARCHAR},
+      </if>
+      <if test="metertypeid != null">
+        #{metertypeid,jdbcType=INTEGER},
+      </if>
+      <if test="mavalue != null">
+        #{mavalue,jdbcType=INTEGER},
+      </if>
+      <if test="startvalue != null">
+        #{startvalue,jdbcType=INTEGER},
+      </if>
+      <if test="setupdate != null">
+        #{setupdate,jdbcType=DATE},
+      </if>
+      <if test="factory != null">
+        #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null">
+        #{disabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.UsMeter">
+    update us_meter
+    <set>
+      <if test="userno != null">
+        UserNo = #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="metername != null">
+        MeterName = #{metername,jdbcType=VARCHAR},
+      </if>
+      <if test="metertypeid != null">
+        MeterTypeID = #{metertypeid,jdbcType=INTEGER},
+      </if>
+      <if test="mavalue != null">
+        mavalue = #{mavalue,jdbcType=INTEGER},
+      </if>
+      <if test="startvalue != null">
+        StartValue = #{startvalue,jdbcType=INTEGER},
+      </if>
+      <if test="setupdate != null">
+        SetupDate = #{setupdate,jdbcType=DATE},
+      </if>
+      <if test="factory != null">
+        Factory = #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null">
+        Disabled = #{disabled,jdbcType=BIT},
+      </if>
+    </set>
+    where MeterNo = #{meterno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.UsMeter">
+    update us_meter
+    set UserNo = #{userno,jdbcType=VARCHAR},
+      MeterName = #{metername,jdbcType=VARCHAR},
+      MeterTypeID = #{metertypeid,jdbcType=INTEGER},
+      mavalue = #{mavalue,jdbcType=INTEGER},
+      StartValue = #{startvalue,jdbcType=INTEGER},
+      SetupDate = #{setupdate,jdbcType=DATE},
+      Factory = #{factory,jdbcType=VARCHAR},
+      Disabled = #{disabled,jdbcType=BIT}
+    where MeterNo = #{meterno,jdbcType=VARCHAR}
+  </update>
+</mapper>

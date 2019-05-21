@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+ 
+<head> 
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+	<title>湖南省自来水公司营销管理信息系统</title> 
+	
+	<link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" th:href="@{/css/text.css}" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" th:href="@{/css/form.css}" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" th:href="@{/css/buttons.css}" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" th:href="@{/css/grid.css}" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" th:href="@{/css/layout.css}" type="text/css" media="screen" title="no title" />
+	
+	<link rel="stylesheet" th:href="@{/css/ui-darkness/jquery-ui-1.8.12.custom.css}" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" th:href="@{/css/plugin/jquery.visualize.css}" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" th:href="@{/css/plugin/facebox.css}" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" th:href="@{/css/plugin/uniform.default.css}" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" th:href="@{/css/plugin/dataTables.css}" type="text/css" media="screen" title="no title" />
+	
+	<link rel="stylesheet" th:href="@{/css/custom.css}" type="text/css" media="screen" title="no title">
+
+</head> 
+ 
+<body> 
+
+<div id="wrapper">
+	
+		
+	
+	<div id="header">
+		
+		<div class="content_pad">
+			<h1><a href="../workspace.html">湖南省自来水公司营销管理信息系统</a></h1>
+			
+			<ul id="nav">
+				
+				<li class="nav_dropdown nav_icon">
+					<a href="javascript:;"><span class="ui-icon ui-icon-wrench"></span>业扩工程</a>
+					
+					<div class="nav_menu">			
+						<ul>
+							<li><a href="uest.html">01 用户申请</a></li>
+							<li><a href="it.html">02 初步审核</a></li>
+							<li><a href=".html">03 交施工费</a></li>
+							<li><a href="lclear.html">04 水费清算</a></li>
+							<li><a href="tract.html">05 供水协议</a></li>
+							<li><a href="king.html">06 施工竣工</a></li>
+							<li><a href="n.html">07 通水停水</a></li>
+							<li><a href="e.html">08 档案存档</a></li>
+							<li><a href="r.html">工单管理</a></li>
+							<li><a href="t.html">终止工单</a></li>
+							<li><a href="rtProgress.html">业扩工程进度</a></li>
+							<li><a href="rtMoney.html">业扩收费报表</a></li>
+						</ul>
+						
+					</div>
+				</li>
+
+				<li class="nav_dropdown nav_icon">
+					<a href="javascript:;"><span class="ui-icon ui-icon-person"></span>用户管理</a>
+					
+					<div class="nav_menu">			
+						<ul>
+							<li><a href="arch.html">用户查询</a></li>
+							<li><a href="d.html">快捷新户</a></li>
+							<li><a href="angeName.html">快捷过户</a></li>
+							<li><a href="angeBank.html">快捷代扣</a></li>
+							<li><a href="angeMeter.html">快捷换表</a></li>
+							<li><a href="angeFormula.html">快捷重签</a></li>
+							<li><a href="lete.html">快捷销户</a></li>
+							<li><a href="portShortcut.html">快捷操作记录</a></li>
+							<li><a href="cNum.html">档案号管理</a></li>
+							<li><a href="ndMsg.html">短信群发</a></li>
+						</ul>
+						
+					</div>
+				</li>
+
+				<li class="nav_dropdown nav_icon">
+					<a href="javascript:;"><span class="ui-icon ui-icon-pencil"></span>抄表管理</a>
+					
+					<div class="nav_menu">			
+						<ul>
+							<li><a href="me.html">表册管理</a></li>
+							<li><a href=".html">抄表初始化</a></li>
+							<li><a href=".html">任务分配</a></li>
+							<li><a href="r.html">抄表录入</a></li>
+							<li><a href="t.html">抄表审核</a></li>
+							<li><a href="rtReading.html">抄表情况查询</a></li>
+							<li><a href="rtVolumeReading.html">抄表统计报表</a></li>
+							<li><a href="rtZero.html">零吨位用户查询</a></li>
+							<li><a href="rtMaxValue.html">最大码值修正记录</a></li>
+							<li><a href="rtCPreAmount.html">底码修正记录</a></li>
+							<li><a href="rtMeterCheck.html">水表周检报表</a></li>
+						</ul>
+						
+					</div>
+				</li>
+				
+				<li class="nav_dropdown nav_icon">
+					<a href="javascript:;"><span class="ui-icon ui-icon-star"></span>收费管理</a>
+					
+					<div class="nav_menu">			
+						<ul>
+							<li><a href="dow.html">窗口收费</a></li>
+							<li><a href="ch.html">批量收费</a></li>
+							<li><a href="oiceReprint.html">发票补开/作废</a></li>
+							<li><a href="ortDebts.html">欠费报表</a></li>
+							<li><a href="ortPay.html">收费情况报表</a></li>
+							<li><a href="ortMonthRecycle.html">月资金回收情况报表</a></li>
+							<li><a href="ortBalance.html">用户预收情况报表</a></li>
+							<li><a href="ortWaterType.html">各类用水统计总表</a></li>
+						</ul>
+						
+					</div>
+				</li>
+				
+				<li class="nav_dropdown nav_icon">
+					<a href="javascript:;"><span class="ui-icon ui-icon-script"></span>发票管理</a>
+					
+					<div class="nav_menu">			
+						<ul>
+							<li><a href="oiceManage.html">发票总表</a></li>
+							<li><a href="oiceIn.html">发票入库</a></li>
+							<li><a href="oiceOut.html">发票出库</a></li>
+							<li><a href="oiceArchive.html">发票交票</a></li>
+							<li><a href="oiceReportOut.html">发票出库情况查询</a></li>
+							<li><a href="oiceReportEmp.html">收费人员发票查询</a></li>
+							<li><a href="oiceReportArchive.html">发票交票情况查询</a></li>
+							<li><a href="oiceReportUse.html">发票使用情况查询</a></li>
+							<li><a href="oiceReportMoneySum.html">销账汇总报表</a></li>
+							<li><a href="oiceReportMoneyDetail.html">销账明细报表</a></li>
+						</ul>
+					</div>
+				</li>
+
+				<li class="nav_dropdown nav_icon">
+					<a href="javascript:;"><span class="ui-icon ui-icon-gear"></span>系统设置</a>
+					
+					<div class="nav_menu">			
+						<ul>
+							<li><a href="a.html">抄表辖区</a></li>
+							<li><a href="erType.html">水表型号</a></li>
+							<li><a href="t.html">部门管理</a></li>
+							<li><a href=".html">员工管理</a></li>
+							<li><a href="upower.html">菜单权限设置</a></li>
+							<li><a href="apower.html">辖区权限设置</a></li>
+							<li><a href="erType.html">用水类型设定</a></li>
+							<li><a href="charge.html">附加费设定</a></li>
+							<li><a href="w.html">流程配置</a></li>
+						</ul>
+						
+					</div>
+				</li>
+				
+				<li class="nav_current nav_dropdown nav_icon_only">
+					<a href="javascript:;">&nbsp;</a>
+					
+					<div class="nav_menu">
+						<ul>
+							<li><a href="../workspace.html">我的工作台</a></li>
+							<li><a href=".html">修改密码</a></li>
+							<li><a href="../login.html">退出系统</a></li>
+						</ul>
+					</div> <!-- .menu -->
+				</li>
+			</ul>
+		</div> <!-- .content_pad -->
+		
+	</div> <!-- #header -->	
+	
+	<div id="masthead">
+		<div>
+			<span id="pagetitle"><a href="javascript:;">抄表辖区设置</a></span>
+			<span id="welcome_span">欢迎回来，马云</span>
+		</div>
+	</div> <!-- #masthead -->	
+	
+	<div id="content" class="xgrid">
+		
+ 		
+		<div class="x12">
+			
+			<h2>添加/修改水表型号</h2>
+			<form th:action="${url}" onsubmit="return yanZhen()">
+				<div class="form label-inline uniform">
+
+					<div class="field"><label for="id">水表型号ID</label> <input id="id" name="id" size="50" type="text" class="medium" readonly th:value="${meterType.id}" /></div>
+
+					<div class="field"><label for="metertypename">水表型号</label> <input id="metertypename" name="metertypename" size="50" type="text" class="medium" th:value="${meterType.metertypename}" /></div>
+
+					<div class="field"><label for="aperture">设置口径</label> <input id="aperture" name="aperture" size="50" type="text" class="medium" th:value="${meterType.aperture}"/></div>
+
+					<div class="field"><label for="mavvalue">最大表码</label> <input id="mavvalue" name="mavvalue" size="50" type="text" class="medium" th:value="${meterType.mavvalue}" /></div>
+
+					<div class="field"><label for="minvalue">下限设置</label> <input id="minvalue" name="minvalue" size="50" type="text" class="medium" th:value="${meterType.minvalue}" /> 吨</div>
+
+					<div class="field"><label for="life">周检年限</label> <input id="life" name="life" size="50" type="text" class="medium" th:value="${meterType.life}" /> 年</div>
+
+
+					<div class="field"><label for="remark">备注</label> <textarea rows="7" cols="50" id="remark" name="remark" th:text="${meterType.remark}" ></textarea></div>
+
+					<div class="buttonrow">
+						<button type="submit" class="btn">保存</button>
+						<button class="btn btn-grey" onClick="history.back(-1);">返回</button>
+					</div>
+
+				</div>
+			</form>
+		</div> <!-- .x12 -->
+		
+	</div> <!-- #content -->
+	
+	<div id="footer">		
+		<div class="content_pad">			
+			<p>&copy; 2013-11 版权所有 <a href="#">湖南省自来水公司</a>.   技术支持 <a href="#">华瑞教育</a>.</p>
+		</div> <!-- .content_pad -->
+		<input type="hidden" id="mess" th:value="${mess}">
+	</div> <!-- #footer -->
+	
+</div> <!-- #wrapper -->
+
+<script th:src="@{/js/jquery/jquery-1.5.2.min.js}"></script>
+<script th:src="@{/js/jquery/jquery-ui-1.8.12.custom.min.js}"></script>
+<script th:src="@{/js/misc/excanvas.min.js}"></script>
+<script th:src="@{/js/jquery/facebox.js}"></script>
+<script th:src="@{/js/jquery/jquery.visualize.js}"></script>
+<script th:src="@{/js/jquery/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/jquery/jquery.tablesorter.min.js}"></script>
+<script th:src="@{/js/jquery/jquery.uniform.min.js}"></script>
+<script th:src="@{/js/jquery/jquery.placeholder.min.js}"></script>
+
+<script th:src="@{/js/widgets.js}"></script>
+<script th:src="@{/js/dashboard.js}"></script>
+
+<script type="text/javascript">
+    var mess = document.getElementById("mess").value;
+    if(mess!=''){
+        alert(mess);
+    }
+	function yanZhen(){
+	    var aperture = document.getElementById("aperture").value;
+        var mavvalue = document.getElementById("mavvalue").value;
+        var minvalue = document.getElementById("minvalue").value;
+        var life = document.getElementById("life").value;
+	    if(isNaN(aperture)){
+	        alert("口径只能是数字");
+	        return false;
+		}
+		if(aperture<1){
+		    alert("口径必须大于0 ");
+		    return false;
+		}
+        if(isNaN(mavvalue)){
+            alert("最大表码只能是数字");
+            return false;
+        }
+        if(mavvalue<1){
+            alert("最大表码必须大于0 ");
+            return false;
+        }
+        if(isNaN(minvalue)){
+            alert("下限设置只能是数字");
+            return false;
+        }
+        if(minvalue<1){
+            alert("下限设置必须大于0 ");
+            return false;
+        }
+        if(minvalue>=mavvalue){
+			alert("下限设置不能大于最大表码");
+			return false;
+		}
+        if(isNaN(life)){
+            alert("周检年限只能是数字");
+            return false;
+        }
+        if(life<1){
+            alert("周检年限必须大于0 ");
+            return false;
+        }
+
+	}
+
+$(document).ready ( function () 
+{
+	Dashboard.init ();		
+});
+
+</script>
+
+</body> 
+ 
+</html>

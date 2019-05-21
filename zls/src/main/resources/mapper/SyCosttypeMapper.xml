@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.SyCosttypeMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.SyCosttype">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="kind" jdbcType="INTEGER" property="kind" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="costtypename" jdbcType="VARCHAR" property="costtypename" />
+    <result column="fullname" jdbcType="VARCHAR" property="fullname" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="surchargetext" jdbcType="VARCHAR" property="surchargetext" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="disabled" jdbcType="BIT" property="disabled" />
+  </resultMap>
+  <select id="getYongShuiAll" resultMap="BaseResultMap">
+    select * from sy_costtype where kind = 0 and disabled = 0
+  </select>
+  <update id="updCost" parameterType="int">
+    update  sy_costtype set disabled = 1 where id = #{id}
+  </update>
+  <insert id="addCost" parameterType="syCostType">
+    insert into sy_costtype values(null,0,#{code},'WaterTypeName',#{fullname},#{price},null,#{remark},0);
+  </insert>
+  <select id="getOne" parameterType="int" resultMap="BaseResultMap">
+    select * from sy_costtype where id = #{id};
+  </select>
+  <update id="updCosts" parameterType="syCostType">
+      update  sy_costtype set code=#{code},fullname=#{fullname},price=#{price},remark=#{remark} where id = #{id}
+  </update>
+  <!--  附加费操作-->
+  <select id="getFuJiaAll" resultMap="BaseResultMap">
+    select * from sy_costtype where kind = 1 and disabled = 0
+  </select>
+  <!-- 附加类添加 -->
+  <insert id="addCostFuJia" parameterType="syCostType">
+     insert into sy_costtype values(null,1,#{code},'SurchargeName',#{fullname},#{price},#{surchargetext},#{remark},0);
+  </insert>
+  <update id="updCostFuJia" parameterType="syCostType">
+      update  sy_costtype set code=#{code},fullname=#{fullname},price=#{price},remark=#{remark},surchargetext=#{surchargetext} where id = #{id}
+  </update>
+</mapper>

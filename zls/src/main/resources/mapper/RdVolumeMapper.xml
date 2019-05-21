@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.RdVolumeMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.RdVolume">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="VolumeName" jdbcType="VARCHAR" property="volumename" />
+    <result column="AreaID" jdbcType="INTEGER" property="areaid" />
+    <result column="OrderIndex" jdbcType="INTEGER" property="orderindex" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="Disabled" jdbcType="BIT" property="disabled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, VolumeName, AreaID, OrderIndex, Remark, Disabled
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rd_volume
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rd_volume
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.RdVolume">
+    insert into rd_volume (ID, VolumeName, AreaID, 
+      OrderIndex, Remark, Disabled
+      )
+    values (#{id,jdbcType=INTEGER}, #{volumename,jdbcType=VARCHAR}, #{areaid,jdbcType=INTEGER}, 
+      #{orderindex,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{disabled,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.RdVolume">
+    insert into rd_volume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="volumename != null">
+        VolumeName,
+      </if>
+      <if test="areaid != null">
+        AreaID,
+      </if>
+      <if test="orderindex != null">
+        OrderIndex,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="disabled != null">
+        Disabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="volumename != null">
+        #{volumename,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="orderindex != null">
+        #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null">
+        #{disabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.RdVolume">
+    update rd_volume
+    <set>
+      <if test="volumename != null">
+        VolumeName = #{volumename,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        AreaID = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="orderindex != null">
+        OrderIndex = #{orderindex,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="disabled != null">
+        Disabled = #{disabled,jdbcType=BIT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.RdVolume">
+    update rd_volume
+    set VolumeName = #{volumename,jdbcType=VARCHAR},
+      AreaID = #{areaid,jdbcType=INTEGER},
+      OrderIndex = #{orderindex,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      Disabled = #{disabled,jdbcType=BIT}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

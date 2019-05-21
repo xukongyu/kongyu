@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.RdReadtypesMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.RdReadtypes">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ReadID" jdbcType="INTEGER" property="readid" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="WaterTypeCode" jdbcType="VARCHAR" property="watertypecode" />
+    <result column="AllotText" jdbcType="VARCHAR" property="allottext" />
+    <result column="Amount" jdbcType="INTEGER" property="amount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ReadID, UserNo, WaterTypeCode, AllotText, Amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rd_readtypes
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rd_readtypes
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.RdReadtypes">
+    insert into rd_readtypes (ID, ReadID, UserNo, 
+      WaterTypeCode, AllotText, Amount
+      )
+    values (#{id,jdbcType=INTEGER}, #{readid,jdbcType=INTEGER}, #{userno,jdbcType=VARCHAR}, 
+      #{watertypecode,jdbcType=VARCHAR}, #{allottext,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.RdReadtypes">
+    insert into rd_readtypes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="readid != null">
+        ReadID,
+      </if>
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="watertypecode != null">
+        WaterTypeCode,
+      </if>
+      <if test="allottext != null">
+        AllotText,
+      </if>
+      <if test="amount != null">
+        Amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="readid != null">
+        #{readid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="watertypecode != null">
+        #{watertypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="allottext != null">
+        #{allottext,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.RdReadtypes">
+    update rd_readtypes
+    <set>
+      <if test="readid != null">
+        ReadID = #{readid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        UserNo = #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="watertypecode != null">
+        WaterTypeCode = #{watertypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="allottext != null">
+        AllotText = #{allottext,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        Amount = #{amount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.RdReadtypes">
+    update rd_readtypes
+    set ReadID = #{readid,jdbcType=INTEGER},
+      UserNo = #{userno,jdbcType=VARCHAR},
+      WaterTypeCode = #{watertypecode,jdbcType=VARCHAR},
+      AllotText = #{allottext,jdbcType=VARCHAR},
+      Amount = #{amount,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html  lang="en" xmlns:th="http://www.thymeleaf.org"
+	   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head> 
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+	<title>打印发票 - 09389411</title> 
+	
+	<link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="../css/text.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="../css/form.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="../css/buttons.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="../css/grid.css" type="text/css" media="screen" title="no title" />	
+	<link rel="stylesheet" href="../css/layout.css" type="text/css" media="screen" title="no title" />	
+	
+	<link rel="stylesheet" href="../css/ui-darkness/jquery-ui-1.8.12.custom.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="../css/plugin/jquery.visualize.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="../css/plugin/facebox.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="../css/plugin/uniform.default.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="../css/plugin/dataTables.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="../css/custom.css" type="text/css" media="screen" title="no title">
+<style type="text/css">
+tr.tr_money td { padding:10px;  }
+tr.tr_money td.m1 { font-size:24px; }
+</style>
+<script type="text/javascript">
+function guanbi() {
+	location.href="/invoice/selectByempid?id="+[[${session.emp.id}]];
+}
+</script>
+</head> 
+ 
+<body >
+<div style="width:90%; margin:0px auto;">
+	<div class="reportTitle">
+		打印发票
+	</div>
+	<table class="report" id="dataTable">
+		<tbody>
+			<tr>
+				<td class="" style="width:10%">交费单号</td>
+				<td class="" style="width:24%" th:text="${session.Pysession.payno}"></td>
+				<td class="" style="width:10%">发票号码</td>
+				<td class="" style="width:23%" th:text="${session.Pysession.invoice}"></td>
+				<td class="" style="width:10%">打印日期</td>
+				<td class="" style="width:23%" th:text="${session.nowdata}"></td>
+			</tr>
+			<tr>
+				<td class="">用户编码</td>
+				<td class="" th:text="${session.pyUsuser.userno}"></td>
+				<td class="">用户姓名</td>
+				<td class="" th:text="${session.pyUsuser.username}"></td>
+				<td class="">收费人员</td>
+				<td class="" th:text="${session.emp.empname}"></td>
+			</tr>
+			<tr>
+				<td class="">用水地址</td>
+				<td class="" colspan="5" th:text="${session.pyUsuser.address}"></td>
+			</tr>
+			<tr class="tr_money">
+				<td class="">交费金额</td>
+				<td class="m1" colspan="2" th:text="${session.Pysession.paymoney}"></td>
+				<td class="">大写金额</td>
+				<td class="m1" colspan="2" th:text="${session.ssmoney}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br/>
+	<div style="margin:0px auto; text-align:center; margin-top:10px;" class="tools">
+		<button type="button" class="btn green" id="excell" onclick="method5('dataTable')">打印</button>&nbsp;　　　　&nbsp;
+		<button class="btn btn-icon btn-cross btn-red" onclick="guanbi()">关闭</button>
+	</div>
+</div>
+
+<script src="../js/jquery/jquery-1.5.2.min.js"></script>
+<script src="../js/jquery/jquery-ui-1.8.12.custom.min.js"></script>
+<script src="../js/misc/excanvas.min.js"></script>
+<script src="../js/jquery/facebox.js"></script>
+<script src="../js/jquery/jquery.visualize.js"></script>
+<script src="../js/jquery/jquery.dataTables.min.js"></script>
+<script src="../js/jquery/jquery.tablesorter.min.js"></script>
+<script src="../js/jquery/jquery.uniform.min.js"></script>
+<script src="../js/jquery/jquery.placeholder.min.js"></script>
+
+<script src="../js/widgets.js"></script>
+<script src="../js/dashboard.js"></script>
+
+<script type="text/javascript">
+	
+$(document).ready ( function () 
+{
+	Dashboard.init ();
+	
+	//选择项初始化
+	$('.tab_container').tabs ();
+	
+	//陈欠账单-选择账单的操作
+	$('table.billlist tbody tr').click(function(){
+		$('table.billlist tbody tr.selected').removeClass('selected');
+		$(this).addClass('selected');
+		
+		//以下代码是模拟ajax视觉效果
+		if(!temp_html) temp_html = $('#details').html();
+		$('#details').html('正在加载...');
+		setTimeout(function(){ $('#details').html(temp_html); }, 300);
+	});
+});
+var temp_html;
+
+</script>
+
+<script>
+    //打印表格
+    var idTmr;
+
+    function getExplorer() {
+        var explorer = window.navigator.userAgent;
+        //ie
+        if(explorer.indexOf("MSIE") >= 0) {
+            return 'ie';
+        }
+        //firefox
+        else if(explorer.indexOf("Firefox") >= 0) {
+            return 'Firefox';
+        }
+        //Chrome
+        else if(explorer.indexOf("Chrome") >= 0) {
+            return 'Chrome';
+        }
+        //Opera
+        else if(explorer.indexOf("Opera") >= 0) {
+            return 'Opera';
+        }
+        //Safari
+        else if(explorer.indexOf("Safari") >= 0) {
+            return 'Safari';
+        }
+    }
+
+    function method5(tableid) {
+        if(getExplorer() == 'ie') {
+            var curTbl = document.getElementById(tableid);
+            var oXL = new ActiveXObject("Excel.Application");
+            var oWB = oXL.Workbooks.Add();
+            var xlsheet = oWB.Worksheets(1);
+            var sel = document.body.createTextRange();
+            sel.moveToElementText(curTbl);
+            sel.select();
+            sel.execCommand("Copy");
+            xlsheet.Paste();
+            oXL.Visible = true;
+
+            try {
+                var fname = oXL.Application.GetSaveAsFilename("Excel.xls",
+                    "Excel Spreadsheets (*.xls), *.xls");
+            } catch(e) {
+                print("Nested catch caught " + e);
+            } finally {
+                oWB.SaveAs(fname);
+                oWB.Close(savechanges = false);
+                oXL.Quit();
+                oXL = null;
+                idTmr = window.setInterval("Cleanup();", 1);
+            }
+
+        } else {
+            tableToExcel(tableid)
+        }
+    }
+
+    function Cleanup() {
+        window.clearInterval(idTmr);
+        CollectGarbage();
+    }
+    var tableToExcel = (function() {
+        var uri = 'data:application/vnd.ms-excel;base64,',
+            template = '<html><head><meta charset="UTF-8"></head><body><table  border="1">{table}</table></body></html>',
+            base64 = function(
+                s) {
+                return window.btoa(unescape(encodeURIComponent(s)))
+            },
+            format = function(s, c) {
+                return s.replace(/{(\w+)}/g, function(m, p) {
+                    return c[p];
+                })
+            }
+        return function(table, name) {
+            if(!table.nodeType)
+                table = document.getElementById(table)
+            var ctx = {
+                worksheet: name || 'Worksheet',
+                table: table.innerHTML
+            }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>
+</body> 
+ 
+</html>

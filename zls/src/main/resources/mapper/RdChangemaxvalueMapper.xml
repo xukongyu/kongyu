@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.RdChangemaxvalueMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.RdChangemaxvalue">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Datee" jdbcType="DATE" property="datee" />
+    <result column="EmpID" jdbcType="INTEGER" property="empid" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="MeterNo" jdbcType="VARCHAR" property="meterno" />
+    <result column="MaxValue1" jdbcType="INTEGER" property="maxvalue1" />
+    <result column="MaxValue2" jdbcType="INTEGER" property="maxvalue2" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, Datee, EmpID, UserNo, MeterNo, MaxValue1, MaxValue2, Remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rd_changemaxvalue
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rd_changemaxvalue
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.RdChangemaxvalue">
+    insert into rd_changemaxvalue (ID, Datee, EmpID, 
+      UserNo, MeterNo, MaxValue1, 
+      MaxValue2, Remark)
+    values (#{id,jdbcType=INTEGER}, #{datee,jdbcType=DATE}, #{empid,jdbcType=INTEGER}, 
+      #{userno,jdbcType=VARCHAR}, #{meterno,jdbcType=VARCHAR}, #{maxvalue1,jdbcType=INTEGER}, 
+      #{maxvalue2,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.RdChangemaxvalue">
+    insert into rd_changemaxvalue
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="datee != null">
+        Datee,
+      </if>
+      <if test="empid != null">
+        EmpID,
+      </if>
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="meterno != null">
+        MeterNo,
+      </if>
+      <if test="maxvalue1 != null">
+        MaxValue1,
+      </if>
+      <if test="maxvalue2 != null">
+        MaxValue2,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="datee != null">
+        #{datee,jdbcType=DATE},
+      </if>
+      <if test="empid != null">
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="meterno != null">
+        #{meterno,jdbcType=VARCHAR},
+      </if>
+      <if test="maxvalue1 != null">
+        #{maxvalue1,jdbcType=INTEGER},
+      </if>
+      <if test="maxvalue2 != null">
+        #{maxvalue2,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.RdChangemaxvalue">
+    update rd_changemaxvalue
+    <set>
+      <if test="datee != null">
+        Datee = #{datee,jdbcType=DATE},
+      </if>
+      <if test="empid != null">
+        EmpID = #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        UserNo = #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="meterno != null">
+        MeterNo = #{meterno,jdbcType=VARCHAR},
+      </if>
+      <if test="maxvalue1 != null">
+        MaxValue1 = #{maxvalue1,jdbcType=INTEGER},
+      </if>
+      <if test="maxvalue2 != null">
+        MaxValue2 = #{maxvalue2,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.RdChangemaxvalue">
+    update rd_changemaxvalue
+    set Datee = #{datee,jdbcType=DATE},
+      EmpID = #{empid,jdbcType=INTEGER},
+      UserNo = #{userno,jdbcType=VARCHAR},
+      MeterNo = #{meterno,jdbcType=VARCHAR},
+      MaxValue1 = #{maxvalue1,jdbcType=INTEGER},
+      MaxValue2 = #{maxvalue2,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

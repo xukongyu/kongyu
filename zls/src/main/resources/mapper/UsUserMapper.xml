@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.UsUserMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.UsUser">
+    <id column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="ABC" jdbcType="VARCHAR" property="abc" />
+    <result column="CreateDate" jdbcType="DATE" property="createdate" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="Phone" jdbcType="VARCHAR" property="phone" />
+    <result column="SMSPhone" jdbcType="VARCHAR" property="smsphone" />
+    <result column="AreaID" jdbcType="INTEGER" property="areaid" />
+    <result column="UserType" jdbcType="VARCHAR" property="usertype" />
+    <result column="PayType" jdbcType="VARCHAR" property="paytype" />
+    <result column="BankName" jdbcType="VARCHAR" property="bankname" />
+    <result column="BankNum" jdbcType="VARCHAR" property="banknum" />
+    <result column="Formula" jdbcType="VARCHAR" property="formula" />
+    <result column="UserMoney" jdbcType="DOUBLE" property="usermoney" />
+    <result column="MeterId" jdbcType="VARCHAR" property="meterid" />
+    <result column="DocNum" jdbcType="VARCHAR" property="docnum" />
+    <result column="Pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="ContractNum" jdbcType="VARCHAR" property="contractnum" />
+    <result column="ContractDate" jdbcType="DATE" property="contractdate" />
+    <result column="VolumeId" jdbcType="INTEGER" property="volumeid" />
+    <result column="VolumeOrderIndex" jdbcType="INTEGER" property="volumeorderindex" />
+    <result column="Disabled" jdbcType="BIT" property="disabled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UserNo, UserName, ABC, CreateDate, Address, Phone, SMSPhone, AreaID, UserType, PayType, 
+    BankName, BankNum, Formula, UserMoney, MeterId, DocNum, Pwd, ContractNum, ContractDate, 
+    VolumeId, VolumeOrderIndex, Disabled
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from us_user
+    where UserNo = #{userno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from us_user
+    where UserNo = #{userno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.UsUser">
+    insert into us_user (UserNo, UserName, ABC, 
+      CreateDate, Address, Phone, 
+      SMSPhone, AreaID, UserType, 
+      PayType, BankName, BankNum, 
+      Formula, UserMoney, MeterId, 
+      DocNum, Pwd, ContractNum, 
+      ContractDate, VolumeId, VolumeOrderIndex, 
+      Disabled)
+    values (#{userno,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{abc,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{smsphone,jdbcType=VARCHAR}, #{areaid,jdbcType=INTEGER}, #{usertype,jdbcType=VARCHAR}, 
+      #{paytype,jdbcType=VARCHAR}, #{bankname,jdbcType=VARCHAR}, #{banknum,jdbcType=VARCHAR}, 
+      #{formula,jdbcType=VARCHAR}, #{usermoney,jdbcType=DOUBLE}, #{meterid,jdbcType=VARCHAR}, 
+      #{docnum,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{contractnum,jdbcType=VARCHAR}, 
+      #{contractdate,jdbcType=DATE}, #{volumeid,jdbcType=INTEGER}, #{volumeorderindex,jdbcType=INTEGER}, 
+      #{disabled,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.UsUser">
+    insert into us_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="abc != null">
+        ABC,
+      </if>
+      <if test="createdate != null">
+        CreateDate,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="phone != null">
+        Phone,
+      </if>
+      <if test="smsphone != null">
+        SMSPhone,
+      </if>
+      <if test="areaid != null">
+        AreaID,
+      </if>
+      <if test="usertype != null">
+        UserType,
+      </if>
+      <if test="paytype != null">
+        PayType,
+      </if>
+      <if test="bankname != null">
+        BankName,
+      </if>
+      <if test="banknum != null">
+        BankNum,
+      </if>
+      <if test="formula != null">
+        Formula,
+      </if>
+      <if test="usermoney != null">
+        UserMoney,
+      </if>
+      <if test="meterid != null">
+        MeterId,
+      </if>
+      <if test="docnum != null">
+        DocNum,
+      </if>
+      <if test="pwd != null">
+        Pwd,
+      </if>
+      <if test="contractnum != null">
+        ContractNum,
+      </if>
+      <if test="contractdate != null">
+        ContractDate,
+      </if>
+      <if test="volumeid != null">
+        VolumeId,
+      </if>
+      <if test="volumeorderindex != null">
+        VolumeOrderIndex,
+      </if>
+      <if test="disabled != null">
+        Disabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="abc != null">
+        #{abc,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="smsphone != null">
+        #{smsphone,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="usertype != null">
+        #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null">
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null">
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null">
+        #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="formula != null">
+        #{formula,jdbcType=VARCHAR},
+      </if>
+      <if test="usermoney != null">
+        #{usermoney,jdbcType=DOUBLE},
+      </if>
+      <if test="meterid != null">
+        #{meterid,jdbcType=VARCHAR},
+      </if>
+      <if test="docnum != null">
+        #{docnum,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="contractnum != null">
+        #{contractnum,jdbcType=VARCHAR},
+      </if>
+      <if test="contractdate != null">
+        #{contractdate,jdbcType=DATE},
+      </if>
+      <if test="volumeid != null">
+        #{volumeid,jdbcType=INTEGER},
+      </if>
+      <if test="volumeorderindex != null">
+        #{volumeorderindex,jdbcType=INTEGER},
+      </if>
+      <if test="disabled != null">
+        #{disabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.UsUser">
+    update us_user
+    <set>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="abc != null">
+        ABC = #{abc,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        CreateDate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="address != null">
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="smsphone != null">
+        SMSPhone = #{smsphone,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        AreaID = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="usertype != null">
+        UserType = #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null">
+        PayType = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null">
+        BankName = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null">
+        BankNum = #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="formula != null">
+        Formula = #{formula,jdbcType=VARCHAR},
+      </if>
+      <if test="usermoney != null">
+        UserMoney = #{usermoney,jdbcType=DOUBLE},
+      </if>
+      <if test="meterid != null">
+        MeterId = #{meterid,jdbcType=VARCHAR},
+      </if>
+      <if test="docnum != null">
+        DocNum = #{docnum,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        Pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="contractnum != null">
+        ContractNum = #{contractnum,jdbcType=VARCHAR},
+      </if>
+      <if test="contractdate != null">
+        ContractDate = #{contractdate,jdbcType=DATE},
+      </if>
+      <if test="volumeid != null">
+        VolumeId = #{volumeid,jdbcType=INTEGER},
+      </if>
+      <if test="volumeorderindex != null">
+        VolumeOrderIndex = #{volumeorderindex,jdbcType=INTEGER},
+      </if>
+      <if test="disabled != null">
+        Disabled = #{disabled,jdbcType=BIT},
+      </if>
+    </set>
+    where UserNo = #{userno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.UsUser">
+    update us_user
+    set UserName = #{username,jdbcType=VARCHAR},
+      ABC = #{abc,jdbcType=VARCHAR},
+      CreateDate = #{createdate,jdbcType=DATE},
+      Address = #{address,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      SMSPhone = #{smsphone,jdbcType=VARCHAR},
+      AreaID = #{areaid,jdbcType=INTEGER},
+      UserType = #{usertype,jdbcType=VARCHAR},
+      PayType = #{paytype,jdbcType=VARCHAR},
+      BankName = #{bankname,jdbcType=VARCHAR},
+      BankNum = #{banknum,jdbcType=VARCHAR},
+      Formula = #{formula,jdbcType=VARCHAR},
+      UserMoney = #{usermoney,jdbcType=DOUBLE},
+      MeterId = #{meterid,jdbcType=VARCHAR},
+      DocNum = #{docnum,jdbcType=VARCHAR},
+      Pwd = #{pwd,jdbcType=VARCHAR},
+      ContractNum = #{contractnum,jdbcType=VARCHAR},
+      ContractDate = #{contractdate,jdbcType=DATE},
+      VolumeId = #{volumeid,jdbcType=INTEGER},
+      VolumeOrderIndex = #{volumeorderindex,jdbcType=INTEGER},
+      Disabled = #{disabled,jdbcType=BIT}
+    where UserNo = #{userno,jdbcType=VARCHAR}
+  </update>
+  <update id="updusermoney" parameterType="com.huarui.zls.pojo.UsUser">
+    update us_user set UserMoney= #{usermoney,jdbcType=DOUBLE} where UserNo = #{userno,jdbcType=VARCHAR}
+  </update>
+  <select id="seluser" parameterType="com.huarui.zls.pojo.UsUser" resultMap="BaseResultMap">
+    select * from us_user
+    <where>
+      <if test="userno!=null and userno!=''">
+        and UserNo=#{userno}
+      </if>
+      <if test="username!=null and username!=''">
+        and UserNname=#{username}
+      </if>
+      <if test="abc!=null and abc!=''">
+        and ABC=#{abc}
+      </if>
+      <if test="phone!=null and phone!=''">
+        and Phone=#{phone}
+      </if>
+      <if test="smsphone!=null and smsphone!=''">
+        and SMSPhone=#{smsphone}
+      </if>
+      <if test="address!=null and address!=''">
+        and Address=#{address}
+      </if>
+      <if test="docnum!=null and docnum!=''">
+        and DocNum=#{docnum}
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.RdYearmonthMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.RdYearmonth">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ReadYear" jdbcType="INTEGER" property="readyear" />
+    <result column="ReadMonth" jdbcType="INTEGER" property="readmonth" />
+    <result column="IsCurrent" jdbcType="BIT" property="iscurrent" />
+    <result column="InitEmpID" jdbcType="INTEGER" property="initempid" />
+    <result column="InitDate" jdbcType="DATE" property="initdate" />
+    <result column="EndDate" jdbcType="DATE" property="enddate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ReadYear, ReadMonth, IsCurrent, InitEmpID, InitDate, EndDate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rd_yearmonth
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rd_yearmonth
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.RdYearmonth">
+    insert into rd_yearmonth (ID, ReadYear, ReadMonth, 
+      IsCurrent, InitEmpID, InitDate, 
+      EndDate)
+    values (#{id,jdbcType=INTEGER}, #{readyear,jdbcType=INTEGER}, #{readmonth,jdbcType=INTEGER}, 
+      #{iscurrent,jdbcType=BIT}, #{initempid,jdbcType=INTEGER}, #{initdate,jdbcType=DATE}, 
+      #{enddate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.RdYearmonth">
+    insert into rd_yearmonth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="readyear != null">
+        ReadYear,
+      </if>
+      <if test="readmonth != null">
+        ReadMonth,
+      </if>
+      <if test="iscurrent != null">
+        IsCurrent,
+      </if>
+      <if test="initempid != null">
+        InitEmpID,
+      </if>
+      <if test="initdate != null">
+        InitDate,
+      </if>
+      <if test="enddate != null">
+        EndDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="readyear != null">
+        #{readyear,jdbcType=INTEGER},
+      </if>
+      <if test="readmonth != null">
+        #{readmonth,jdbcType=INTEGER},
+      </if>
+      <if test="iscurrent != null">
+        #{iscurrent,jdbcType=BIT},
+      </if>
+      <if test="initempid != null">
+        #{initempid,jdbcType=INTEGER},
+      </if>
+      <if test="initdate != null">
+        #{initdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.RdYearmonth">
+    update rd_yearmonth
+    <set>
+      <if test="readyear != null">
+        ReadYear = #{readyear,jdbcType=INTEGER},
+      </if>
+      <if test="readmonth != null">
+        ReadMonth = #{readmonth,jdbcType=INTEGER},
+      </if>
+      <if test="iscurrent != null">
+        IsCurrent = #{iscurrent,jdbcType=BIT},
+      </if>
+      <if test="initempid != null">
+        InitEmpID = #{initempid,jdbcType=INTEGER},
+      </if>
+      <if test="initdate != null">
+        InitDate = #{initdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        EndDate = #{enddate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.RdYearmonth">
+    update rd_yearmonth
+    set ReadYear = #{readyear,jdbcType=INTEGER},
+      ReadMonth = #{readmonth,jdbcType=INTEGER},
+      IsCurrent = #{iscurrent,jdbcType=BIT},
+      InitEmpID = #{initempid,jdbcType=INTEGER},
+      InitDate = #{initdate,jdbcType=DATE},
+      EndDate = #{enddate,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

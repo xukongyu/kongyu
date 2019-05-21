@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.BeOrderuserMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.BeOrderuser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="OrderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="Phone" jdbcType="VARCHAR" property="phone" />
+    <result column="SMSPhone" jdbcType="VARCHAR" property="smsphone" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="ProjectMoney" jdbcType="DECIMAL" property="projectmoney" />
+    <result column="RealMoney" jdbcType="DECIMAL" property="realmoney" />
+    <result column="InvoiceNo" jdbcType="VARCHAR" property="invoiceno" />
+    <result column="Formula" jdbcType="VARCHAR" property="formula" />
+    <result column="ContractNum" jdbcType="VARCHAR" property="contractnum" />
+    <result column="MeterTypeID" jdbcType="INTEGER" property="metertypeid" />
+    <result column="MeterName" jdbcType="VARCHAR" property="metername" />
+    <result column="MaValue" jdbcType="INTEGER" property="mavalue" />
+    <result column="StartValue" jdbcType="INTEGER" property="startvalue" />
+    <result column="MeterFactory" jdbcType="VARCHAR" property="meterfactory" />
+    <result column="DocNum" jdbcType="VARCHAR" property="docnum" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+  </resultMap>
+  <insert id="addOrderUser" parameterType="beOrderUser">
+    insert into be_orderuser values(null,#{orderno},#{username},#{phone},#{smsphone},#{address},null,null,null,null,null,#{metertypeid},null,null,null,null,null,null)
+  </insert>
+  <!-- 根据工单id查询所有所属用户-->
+  <select id="getByOrderNoAll" parameterType="String" resultMap="BaseResultMap">
+    select * from be_orderuser where orderno = #{orderno}
+  </select>
+  <!-- 缴费后修改属性 根据自身id -->
+  <update id="updJiaofeiYes"  parameterType="beOrderUser">
+    update be_orderuser set projectmoney=#{projectmoney},realmoney=#{realmoney},invoiceno=#{invoiceno} where id = #{id}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.PyBilldetailMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.PyBilldetail">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="BillNo" jdbcType="VARCHAR" property="billno" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="CostTypeCode" jdbcType="VARCHAR" property="costtypecode" />
+    <result column="Amount" jdbcType="INTEGER" property="amount" />
+    <result column="Price" jdbcType="DOUBLE" property="price" />
+    <result column="DetailMoney" jdbcType="DOUBLE" property="detailmoney" />
+    <result column="RealMoney" jdbcType="DOUBLE" property="realmoney" />
+    <result column="Balance" jdbcType="BIT" property="balance" />
+    <result column="BalanceDate" jdbcType="DATE" property="balancedate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BillNo, UserNo, CostTypeCode, Amount, Price, DetailMoney, RealMoney, Balance, 
+    BalanceDate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from py_billdetail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from py_billdetail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.PyBilldetail">
+    insert into py_billdetail (ID, BillNo, UserNo, 
+      CostTypeCode, Amount, Price, 
+      DetailMoney, RealMoney, Balance, 
+      BalanceDate)
+    values (#{id,jdbcType=INTEGER}, #{billno,jdbcType=VARCHAR}, #{userno,jdbcType=VARCHAR}, 
+      #{costtypecode,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, 
+      #{detailmoney,jdbcType=DOUBLE}, #{realmoney,jdbcType=DOUBLE}, #{balance,jdbcType=BIT}, 
+      #{balancedate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.PyBilldetail">
+    insert into py_billdetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="billno != null">
+        BillNo,
+      </if>
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="costtypecode != null">
+        CostTypeCode,
+      </if>
+      <if test="amount != null">
+        Amount,
+      </if>
+      <if test="price != null">
+        Price,
+      </if>
+      <if test="detailmoney != null">
+        DetailMoney,
+      </if>
+      <if test="realmoney != null">
+        RealMoney,
+      </if>
+      <if test="balance != null">
+        Balance,
+      </if>
+      <if test="balancedate != null">
+        BalanceDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="billno != null">
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="costtypecode != null">
+        #{costtypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="detailmoney != null">
+        #{detailmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="realmoney != null">
+        #{realmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=BIT},
+      </if>
+      <if test="balancedate != null">
+        #{balancedate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.PyBilldetail">
+    update py_billdetail
+    <set>
+      <if test="billno != null">
+        BillNo = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="userno != null">
+        UserNo = #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="costtypecode != null">
+        CostTypeCode = #{costtypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        Amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        Price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="detailmoney != null">
+        DetailMoney = #{detailmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="realmoney != null">
+        RealMoney = #{realmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null">
+        Balance = #{balance,jdbcType=BIT},
+      </if>
+      <if test="balancedate != null">
+        BalanceDate = #{balancedate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.PyBilldetail">
+    update py_billdetail
+    set BillNo = #{billno,jdbcType=VARCHAR},
+      UserNo = #{userno,jdbcType=VARCHAR},
+      CostTypeCode = #{costtypecode,jdbcType=VARCHAR},
+      Amount = #{amount,jdbcType=INTEGER},
+      Price = #{price,jdbcType=DOUBLE},
+      DetailMoney = #{detailmoney,jdbcType=DOUBLE},
+      RealMoney = #{realmoney,jdbcType=DOUBLE},
+      Balance = #{balance,jdbcType=BIT},
+      BalanceDate = #{balancedate,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

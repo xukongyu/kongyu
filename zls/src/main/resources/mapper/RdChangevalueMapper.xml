@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.RdChangevalueMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.RdChangevalue">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Datee" jdbcType="DATE" property="datee" />
+    <result column="EmpID" jdbcType="INTEGER" property="empid" />
+    <result column="UserNo" jdbcType="VARCHAR" property="userno" />
+    <result column="PreValue1" jdbcType="INTEGER" property="prevalue1" />
+    <result column="PreValue2" jdbcType="INTEGER" property="prevalue2" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, Datee, EmpID, UserNo, PreValue1, PreValue2, Remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rd_changevalue
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rd_changevalue
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huarui.zls.pojo.RdChangevalue">
+    insert into rd_changevalue (ID, Datee, EmpID, 
+      UserNo, PreValue1, PreValue2, 
+      Remark)
+    values (#{id,jdbcType=INTEGER}, #{datee,jdbcType=DATE}, #{empid,jdbcType=INTEGER}, 
+      #{userno,jdbcType=VARCHAR}, #{prevalue1,jdbcType=INTEGER}, #{prevalue2,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huarui.zls.pojo.RdChangevalue">
+    insert into rd_changevalue
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="datee != null">
+        Datee,
+      </if>
+      <if test="empid != null">
+        EmpID,
+      </if>
+      <if test="userno != null">
+        UserNo,
+      </if>
+      <if test="prevalue1 != null">
+        PreValue1,
+      </if>
+      <if test="prevalue2 != null">
+        PreValue2,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="datee != null">
+        #{datee,jdbcType=DATE},
+      </if>
+      <if test="empid != null">
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="prevalue1 != null">
+        #{prevalue1,jdbcType=INTEGER},
+      </if>
+      <if test="prevalue2 != null">
+        #{prevalue2,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huarui.zls.pojo.RdChangevalue">
+    update rd_changevalue
+    <set>
+      <if test="datee != null">
+        Datee = #{datee,jdbcType=DATE},
+      </if>
+      <if test="empid != null">
+        EmpID = #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="userno != null">
+        UserNo = #{userno,jdbcType=VARCHAR},
+      </if>
+      <if test="prevalue1 != null">
+        PreValue1 = #{prevalue1,jdbcType=INTEGER},
+      </if>
+      <if test="prevalue2 != null">
+        PreValue2 = #{prevalue2,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huarui.zls.pojo.RdChangevalue">
+    update rd_changevalue
+    set Datee = #{datee,jdbcType=DATE},
+      EmpID = #{empid,jdbcType=INTEGER},
+      UserNo = #{userno,jdbcType=VARCHAR},
+      PreValue1 = #{prevalue1,jdbcType=INTEGER},
+      PreValue2 = #{prevalue2,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

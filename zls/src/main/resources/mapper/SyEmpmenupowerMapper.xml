@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huarui.zls.mapper.SyEmpmenupowerMapper">
+  <resultMap id="BaseResultMap" type="com.huarui.zls.pojo.SyEmpmenupower">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="empid" jdbcType="INTEGER" property="empid" />
+    <result column="menuid" jdbcType="INTEGER" property="menuid" />
+  </resultMap>
+  <insert id="addMenupower" parameterType="syEmpMenuPower">
+    insert into sy_empmenupower values(null,#{empid},#{menuid})
+  </insert>
+  <select id="getByEmpIdAll" resultMap="BaseResultMap" parameterType="int">
+    select * from sy_empmenupower where empid = #{id}
+  </select>
+  <delete id="delByEmpIdAll" parameterType="int">
+    delete from sy_empmenupower where empid=#{id}
+  </delete>
+</mapper>
